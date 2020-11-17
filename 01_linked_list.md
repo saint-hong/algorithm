@@ -15,6 +15,7 @@ node_A = Node("A")
 node_B = Node("B")
 node_A = node_B
 ```
+
 ## 2) 특징
 - 연결리스트는 각각의 노드가 링크로 연결되어 있다.
 - 연결리스트는 동적으로 메모리를 할당한다.
@@ -57,12 +58,12 @@ def print_list() :
         node = node.next # node_A.next = node_B
     print
 ```
+
 - 출력
 ```
 ### data 값이 순차적으로 출력된다.
 init_list()
 print_list()
-=================================
 A
 B
 C
@@ -95,6 +96,7 @@ def print_list() :
         print(node.data)
         node = node.next # node_A.next = node_B
     print
+```
 
 ### 연결리스트 중간에 데이터를 삽입하는 알고리즘
 ```
@@ -113,6 +115,7 @@ def insert_node(data) :
     new_node.next = node_T        ### node_T.data 가 D 이면 실행된다. new_node.data = "C", new_node.next = node_T = node_D
     node_P.next = new_node        ### node_P.next = node_C
 ```
+
 - 출력
 ```
 print("연결 리스트의 초기화 후")
@@ -121,7 +124,7 @@ print_list()
 print("노드 C를 추가한 후")
 insert_node("C")
 print_list()
-===================================
+================================
 연결 리스트의 초기화 후
 A
 B
@@ -134,6 +137,7 @@ C
 D
 E
 ```
+
 ### 연결리스트의 삭제 알고리즘
 ```
 def delete_node(del_data) :
@@ -158,6 +162,7 @@ def delete_node(del_data) :
         pre_node = next_node                   ### pre_node = node_B
         next_node = next_node.next             ### noext_node = node_C
 ```
+
 - 출력
 ```
 print("연결리스트 초기화")
@@ -169,7 +174,7 @@ print_list()
 print("노드 D를 삭제한 후")
 delete_node("B")
 print_list()
-=============================================
+================================
 연결리스트 초기화
 A
 B
@@ -188,6 +193,7 @@ C
 D
 E
 ```
+
 # 2. 이중 연결 리스트
 ## 2) 이중 연결 리스트란 ?
 - 단일 연결 리스트는 노드의 링크가 한 방향으로만 향한다.
@@ -195,8 +201,10 @@ E
 ```
 A -> B -> C -> D -> C -> B -> A
 ```
+
 ## 3) 이중 연결 리스트의 삽입과 삭제 알고리즘
 - 단일 연결 리스트와 코드는 비슷하고 prev 멤버 변수가 추가된다.
+
 ### 삽입 알고리즘
 ```
 class Node :
@@ -242,6 +250,7 @@ def print_list() :
         node = node.next
     print
 ```
+
 - 출력 : C 가 추가 되었다.
 ```
 print("연결 리스트 초기화")
@@ -250,7 +259,7 @@ print_list()
 print("노드 C의 추가 후")
 insert_node("C")
 print_list()
-===============================
+================================
 연결 리스트 초기화
 A
 B
@@ -263,6 +272,7 @@ C
 D
 E
 ```
+
 ### 삭제 알고리즘
 ```
 def delete_node(del_data) :
@@ -288,6 +298,7 @@ def delete_node(del_data) :
         pre_node = next_node                   ### pre_node 는 node_B
         next_node = next_node.next             ### noext_node = node_C 가 되며 while 문 다시 실행.
 ```
+
 - 출력 : D 가 삭제 되었다.
 ```
 print("연결 리스트 초기화")
@@ -299,7 +310,7 @@ print_list()
 print("노드 D의 삭제 후")
 delete_node("D")
 print_list()
-==================================
+================================
 연결 리스트 초기화
 A
 B
