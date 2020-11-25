@@ -45,7 +45,7 @@ def bubble_sort(random_list) :
 ```
 
 - 랜덤으로 숫자 데이터 생성
-``
+```
 import random 
 
 alist = []
