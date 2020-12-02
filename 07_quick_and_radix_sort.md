@@ -13,7 +13,9 @@
     - 부분 리스트가 더 이상 분할이 안 될때가지 반복한다.
     
 ![quick_firstsplit](./images/quick_firstsplit.png)
+
 ![quick_partitionA](./images/quick_partitionA.png)
+
 ![quick_partitionB](./images/quick_partitionB.png)
 
 ## 2) 퀵 정렬 알고리즘의 장점
