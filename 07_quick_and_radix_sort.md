@@ -11,6 +11,7 @@
     - 왼쪽 부분의 첫번째 데이터와 오른쪽 부분의 마지막 데이터를 정의한뒤, 기준 데이터와 각 부분의 데이터들을 비교하여 기준 데이터보다 작으면 왼쪽으로 이동, 기준 데이터보다 크면 오른쪽으로 이동시킨다.
     - 첫번째 시행 후, 분할된 왼쪽 부분리스트와 오른쪽 부분리스트 각각 다시 기준 데이터를 정하고 같은 방식으로 데이터를 비교하여 정렬하는 방식이다.
     - 부분 리스트가 더 이상 분할이 안 될때가지 반복한다.
+    
 ![quick_firstsplit](./images/quick_firstsplit.png)
 ![quick_partitionA](./images/quick_partitionA.png)
 ![quick_partitionB](./images/quick_partitionB.png)
@@ -189,7 +190,8 @@ def quick_sort(collection: list) -> list :
         (greater if element > pivot else lesser).append(element)
         
     # lesser와 greater 를 각각 재귀 호출로 재정렬 후 pivot 을 기준으로 결합
-    return quick_sort(lesser) + [pivot] + quick_sort(greater)```
+    return quick_sort(lesser) + [pivot] + quick_sort(greater)
+```
 ```
 random_list = []
 input_number = input("data : ")
@@ -284,6 +286,7 @@ print(sorted)
 ===== after sort
 [16465, 25505, 26354, 30256, 47634, 49253, 53199, 74354, 81039, 83441]
 ```
+
 ## 5) 코드 탐색
 
 - 로그함수를 사용하여 데이터가 몇 자리수인지 확인
@@ -430,42 +433,4 @@ reversed
 [2268, 14359, 27787, 42932, 85059]
 final :  [2268, 14359, 27787, 42932, 85059]
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
