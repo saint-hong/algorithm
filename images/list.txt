@@ -1,2 +1,3 @@
-bubblepass.png	shellsortB.png	shellsortD.png
-shellsortA.png	shellsortC.png	swap.png
+bubblepass.png	quick_al_2.png	      quick_partitionB.png  shellsortC.png
+list.txt	quick_firstsplit.png  shellsortA.png	    shellsortD.png
+quick_al_1.png	quick_partitionA.png  shellsortB.png	    swap.png
