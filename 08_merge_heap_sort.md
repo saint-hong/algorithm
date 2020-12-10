@@ -231,3 +231,10 @@ Merging  [41, 87, 88]
 Merging  [13, 41, 61, 87, 88]
 Merging  [2, 13, 18, 23, 41, 49, 61, 73, 87, 88]
 ```
+
+## 참고 사이트
+```
+https://ratsgo.github.io/data%20structure&algorithm/2017/10/03/mergesort/
+https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html
+https://runestone.academy/runestone/books/published/pythonds/SortSearch/TheMergeSort.html
+```
