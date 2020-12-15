@@ -251,60 +251,62 @@ print(bh.delMin())
 - 모듈의 함수를 python code 로 구현
 ```
 class BinHeap :
-    def __init__(self) :       # 생성자 함수로 바이너리 힙 구현
-        self.heapList = [0]    # 힙리스트에 0을 저장. 배열의 데이터 저장은 1부터 시작.
-        self.currentSize = 0   # 힙의 크기를 추적할 때 사용된다.
+    def __init__(self) :                        # 생성자 함수로 바이너리 힙 구현
+        self.heapList = [0]                     # 힙리스트에 0을 저장. 배열의 데이터 저장은 1부터 시작.
+        self.currentSize = 0                    # 힙의 크기를 추적할 때 사용된다.
 
-    def insert(self, k) :       # 바이너리힙에 데이터를 추가하기 위한 함수.
-        self.heapList.append(k) # 배열의 끝, 즉 이진트리의 마지막 노드에 추가.
+    def insert(self, k) :                       # 바이너리힙에 데이터를 추가하기 위한 함수.
+        self.heapList.append(k)                 # 배열의 끝, 즉 이진트리의 마지막 노드에 추가.
         self.currentSize = self.currentSize + 1
-        self.percUp(self.currentSize)    # 이진트리의 속성에따라 추가된 데이터를 재배열.
+        self.percUp(self.currentSize)           # 이진트리의 속성에따라 추가된 데이터를 재배열.
+    
     # min heap 의 속성대로 작은 것을 상위 노드로 옮기면서 배열을 정렬하는 함수.
-    # 부모노드가 p 라면, left는 2p, right는 2p+1
-    # 자식노드 기준으로 부모노드는 2로 나눈 몫이 된다.
+    # 부모노드가 p 라면, left는 2p, right는 2p+1 # 자식노드 기준으로 부모노드는 2로 나눈 몫이 된다.
     def percUp(self, i) :
-        while i // 2 > 0 :      # 현재 노드 i 의 부모 인덱스는 2로 나눈 몫이된다.
-            if self.heapList[i] < self.heapList[i//2] : # 현재 노드와 부모노드 비교.
-                tmp = self.heapList[i//2]    # 현재 노드가 부모노드보다 작으면 swap.
+        while i // 2 > 0 :                      # 현재 노드 i 의 부모 인덱스는 2로 나눈 몫이된다.
+            if self.heapList[i] < self.heapList[i//2] :     # 현재 노드와 부모노드 비교.
+                tmp = self.heapList[i//2]       # 현재 노드가 부모노드보다 작으면 swap.
                 self.heapList[i//2] = self.heapList[i]
                 self.heapList[i] = tmp
-            i = i // 2          # 부모노드의 부모노드를 계산하고 다시 while 문 실행.
+            i = i // 2                          # 부모노드의 부모노드를 계산하고 다시 while 문 실행.
 
     def percDown(self, i) :
-        while (i*2) <= self.currentSize : # i 의 left 가 전체길이보다 작거나 같아야함.
-            mc = self.minChild(i)         # i 의 left와 right 중에서 작은 것을 반환.
+        while (i*2) <= self.currentSize :       # i 의 left 가 전체길이보다 작거나 같아야함.
+            mc = self.minChild(i)               # i 의 left와 right 중에서 작은 것을 반환.
             if self.heapList[i] > self.heapList[mc] : # i 와 작은 것을 비교하고,
                 tmp = self.heapList[i]                # 큰 것은 아래로, 작은 것은 상위의 노드로 올려준다.
                 self.heapList[i] = self.heapList[mc]
                 self.heapList[mc] = tmp
-            i = mc                        # 크기비교에서 자리가 바뀐 현재 i를 다시 자식노드와 비교한다.
+            i = mc                              # 크기비교에서 자리가 바뀐 현재 i를 다시 자식노드와 비교한다.
 
     # 현재 노드의 좌우 자식노드 중 작은 것의 인덱스를 반환하는 함수.
     # i*2 : leftchild, i*2+1 : rightchild
     def minChild(self, i) :
-        if i*2+1 > self.currentSize : # i 의 right 가 전체 길이보다 크면 안된다.
-            return i*2                # right 가 전체 길이보다 크면 left 를 반환한다.
-        else :                        # right 가 전체 길이보다 작으면,
+        if i*2+1 > self.currentSize :            # i 의 right 가 전체 길이보다 크면 안된다.
+            return i*2                           # right 가 전체 길이보다 크면 left 를 반환한다.
+        else :                                   # right 가 전체 길이보다 작으면,
             if self.heapList[i*2] < self.heapList[i*2+1] :   # left와 right 를 비교.
-                return i*2            # 작은 것의 인덱스를 반환한다.
+                return i*2                       # 작은 것의 인덱스를 반환한다.
             else :
                 return i*2+1
-
+                
+    # 루트노드에 해당하는 데이터를 삭제하고, 리프노드의 데이터로 대체해주는 함수
     def delMin(self) :
-        retval = self.heapList[1] # 배열의 1번이 루트노드에 해당한다.
+        retval = self.heapList[1]                # 배열의 1번이 루트노드에 해당한다.
         self.heapList[1] = self.heapList[self.currentSize] # 루트노드와 리프노드를 swap.
-        self.currentSize = self.currentSize -1 # 배열길이가 하나 작아진다.
-        self.heapList.pop()                    # 배열에서 마지막 데이터를 꺼내고 삭제.
-        self.percDown(1)          # 새로운 루트노드를 기준으로 다시 재배열한다.
-        return retval             # 재배열이 끝난 배열의 루트 노드를 반환한다.
+        self.currentSize = self.currentSize -1   # 배열길이가 하나 작아진다.
+        self.heapList.pop()                      # 배열에서 마지막 데이터를 꺼내고 삭제.
+        self.percDown(1)                         # 새로운 루트노드를 기준으로 다시 재배열한다.
+        return retval                            # 재배열이 끝난 배열의 루트 노드를 반환한다.
 
+    # 데이터 배열을 이진트리의 속성에 맞게 재배열해주는 함수 
     def buildHeap(self, alist) :
-        i = len(alist) // 2       # 배열의 앞에 0을 추가하므로 1이 루트노드이고, 배열의 중앙에 위치한 노드를 기준으로 이진트리를 구성한다.
-        self.currentSize = len(alist)  # 전체길이가 현재 사이즈에 저장된다.
-        self.heapList = [0] + alist[:] # 배열의 앞에 0을 추가. 배열과 이진트리의 노드의 위치를 같게해주는 효과. 배열의 1이 루트노드이다.
-        while (i>0) :             # 이진트리의 기본속성에 맞게 모든 레벨에 노드가 있어야한다.
-            self.percDown(i)      # 이진트리를 min heap 의 속성에 맞게 배열한다.
-            i = i - 1             # i 의 부모노드를 반복해서 재배열한다.
+        i = len(alist) // 2                      # 배열의 앞에 0을 추가하므로 1이 루트노드이고, 배열의 중앙에 위치한 노드를 기준으로 이진트리를 구성한다.
+        self.currentSize = len(alist)            # 전체길이가 현재 사이즈에 저장된다.
+        self.heapList = [0] + alist[:]           # 배열의 앞에 0을 추가. 배열과 이진트리의 노드의 위치를 같게해주는 효과. 배열의 1이 루트노드이다.
+        while (i>0) :                            # 이진트리의 기본속성에 맞게 모든 레벨에 노드가 있어야한다.
+            self.percDown(i)                     # 이진트리를 min heap 의 속성에 맞게 배열한다.
+            i = i - 1                            # i 의 부모노드를 반복해서 재배열한다.
         return self.heapList
 ```
 
@@ -388,4 +390,3 @@ print(sorted_lst)
 ====after sorted
 [122, 217, 240, 363, 365, 500, 666, 768, 808, 984]
 ```
-
