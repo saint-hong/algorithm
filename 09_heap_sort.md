@@ -77,6 +77,7 @@ def heap_sort(heap=None) :
         up_heap(heap, 0, len(heap) - 1)           # 가장 큰 숫자가 차례로 제거되면서 이진트리를 반복해서 만든다. 점차 데이터는 줄어든다.
     return tmp_arry                               # 루트노드, 즉 가장 큰 숫자를 차례대로 저장하면 데이터의 정렬이 완료된다.
 ```
+
 - 랜덤 리스트 생성
 ```
 data = []
@@ -94,6 +95,7 @@ data : 50
 ```
 build_heap(data)
 ```
+
 - 이진트리의 배열을 내림차순으로 정렬
 ```
 sorted_data = heap_sort(data)
@@ -107,7 +109,6 @@ print(sorted_data)
 ## 3)-1 코드 탐색
 - 비트 연산자를 사용하여 현재 노드의 좌,우 자식노드의 인덱스를 구한다.
 - 10 진법의 숫자를 2 진법의 데이터 전환하고, >>, << 연산자를 사용하면 데이터를 변형할 수 있다.
-
 ```
 print("parents_child node index")
 for i in range(10) :
@@ -129,7 +130,6 @@ p_node : 9 left_child : 19 right_child : 20
 ```
 
 - 역순으로 출력하기
-
 ```
 for test in reversed(range(5)) :
     print(test)
@@ -145,7 +145,6 @@ for test in reversed(range(5)) :
 
 ## 4) max heap sort algorithm 2
 - https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py
-
 ```
 def heapify(unsorted, index, heap_size) :
     largest = index              # 현재 인덱스는 배열의 중간위치부터 시작.
@@ -195,7 +194,7 @@ heap_sort(lst)
 
 [324, 414, 521, 578, 584, 610, 617, 637, 660, 881]
 ```
-```
+
 ## 4)-1 코드탐색
 
 - 역순으로 출력
@@ -250,7 +249,6 @@ print(bh.delMin())
 ```
 
 - 모듈의 함수를 python code 로 구현
-
 ```
 class BinHeap :
     def __init__(self) :       # 생성자 함수로 바이너리 힙 구현
@@ -370,6 +368,7 @@ print("current heaplist : ", bh.heapList)
 
 current heaplist :  [0, 122, 363, 217, 500, 365, 808, 240, 666, 768, 984]
 ```
+
 ```
 print("====before sorted")
 print(bh.heapList)
@@ -385,22 +384,8 @@ print(sorted_lst)
 
 ====before sorted
 [0, 122, 363, 217, 500, 365, 808, 240, 666, 768, 984]
+
 ====after sorted
 [122, 217, 240, 363, 365, 500, 666, 768, 808, 984]
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
