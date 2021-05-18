@@ -360,6 +360,7 @@ def gapinsertionSort(alist, start, gap) :
             
         alist[position] = currentvalue
 ```
+```
 now gap size : 10 now position : 10 position-gap : 0
 now gap size : 10 now position : 11 position-gap : 1
 now gap size : 10 now position : 12 position-gap : 2
@@ -427,10 +428,7 @@ now gap size : 1 now position : 18 position-gap : 17
 now gap size : 1 now position : 19 position-gap : 18
 =========
 ```
-=======<<print>>=======
 
-
-```
 
 ## 참고 사이트
 https://gmlwjd9405.github.io/2018/05/08/algorithm-shell-sort.html
