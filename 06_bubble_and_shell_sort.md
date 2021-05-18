@@ -257,6 +257,20 @@ print("교환횟수 : ", swap_counter)
 - 데이터를 부분리스트로 나누는 함수와 나누어진 부분리스트들의 데이터를 비교-교환하는 함수로 만들었다.
 - 데이터가 검색을 진행을 마칠 때마다, 더 작은 수의 gap 으로 나누어지는 것을 출력해서 보여준다.
 
+## 보충 설명
+- 쉘의 사이즈를 결정하는 함수와 이것을 기준으로 각 쉘의 순서데로 비교하는 함수로 만들어진다.
+- 첫번째함수는 쉘 사이즈를 정한뒤, 반복문을 통해 쉘을 끝으로 하는 숫자를 반환한다. 이렇게 반환된 숫자는 하나의 쉘의 인덱스를 의미한다. 
+- 반복문이 실행되면 데이터 비교 함수를 호출하여, 전체 배열과 쉘의 인덱스 값과 쉘 사이즈를 아규먼트로 보낸다.
+- 데이터 비교 함수가 실행되면, 반복문을 통해서 현재 쉘에 대한 인덱스가 주어진 반복문의 옵션에 따라서 반환된다.
+	- 배열의 길이가 20이고 현재 쉘사이즈가 10 인경우, 10, 11, 12, 13, ... , 19
+- 이렇게 반화되는 값은 배열의 인덱스가 되고, 현재 값과 현재 위치를 지칭한다.
+- 다음 while 문에서 현재 위치 10과 이보다 쉘 사이즈 10 만큼 작은 위치인 0의 데이터의 크기를 비교하고, 작은 인덱스의 데이터가 클 경우 현재 인덱스의 값과 자리를 교환한다.
+	- 10 과 0, 11 과 1, 12 와 2, ... 19와 9
+- 데이터 비교 과정에서 작은 인덱스의 값이 더 작다면 현재 인덱스에 처음 비교의 시작이었던 현재값을 저장한다.
+- 쉘 사이즈 10의 비교가 끝나면 (10~19), 첫번째 함수에서 다시 쉘 사이즈를 절반으로 줄인 값을 반환하고 이 값을 기준으로 다시 데이터 비교함수를 호출 한다.
+- 데이터 비교함수에서 파라미터로 받은 값을 가지고 다시 각 쉘의 순서대로 데이터를 비교한 후 큰 것과 작은 것의 자리를 교환한다.
+	- 5, 10, 15 / 6, 11, 16 / 7, 12, 17 / ... / 9, 14, 19
+	- 0, 5, 10 / 1, 6, 11 / 2, 7, 12 /   ... /  4, 9, 14
 ```
 def shellsort(alist) :
     sublistcount = len(alist) // 2
@@ -311,6 +325,111 @@ After increments of size 3
 After increments of size 1 
  The list is :  
  [1, 2, 2, 3, 3, 3, 4, 4, 5, 6, 7, 8, 8, 8, 10, 10, 11, 12, 12, 13, 16, 18, 19, 19, 23, 23, 24, 24, 25, 25, 27, 28, 28, 30, 33, 33, 35, 35, 36, 37, 40, 40, 41, 41, 41, 43, 47, 47, 49, 50]
+```
+
+- 데이터 비교 과정을 알아볼 수 있게 출력 
+```
+def shellsort(alist) :
+    sublistcount = len(alist) // 2
+    while sublistcount > 0 :
+        for startposition in range(sublistcount) :
+            gapinsertionSort(alist, startposition, sublistcount)
+            
+        #print("After increments of size", sublistcount,"\n","The list is : ","\n",alist)
+        #print("\n")
+        
+	print("==========="
+	sublistcount = sublistcount // 2
+        
+compare_counter = 0
+swap_counter = 0
+
+def gapinsertionSort(alist, start, gap) :
+    global compare_counter, swap_counter
+    for i in range(start+gap, len(alist), gap) :
+        currentvalue = alist[i]
+        position = i
+	
+	print("now gap size :", gap, "now position :", position, "position-gap :", position-gap)
+	
+        compare_counter += 1
+        while position >= gap and alist[position-gap] > currentvalue :
+            swap_counter += 1
+            alist[position] = alist[position-gap]
+            position = position-gap
+            
+        alist[position] = currentvalue
+```
+now gap size : 10 now position : 10 position-gap : 0
+now gap size : 10 now position : 11 position-gap : 1
+now gap size : 10 now position : 12 position-gap : 2
+now gap size : 10 now position : 13 position-gap : 3
+now gap size : 10 now position : 14 position-gap : 4
+now gap size : 10 now position : 15 position-gap : 5
+now gap size : 10 now position : 16 position-gap : 6
+now gap size : 10 now position : 17 position-gap : 7
+now gap size : 10 now position : 18 position-gap : 8
+now gap size : 10 now position : 19 position-gap : 9
+=========
+now gap size : 5 now position : 5 position-gap : 0
+now gap size : 5 now position : 10 position-gap : 5
+now gap size : 5 now position : 15 position-gap : 10
+now gap size : 5 now position : 6 position-gap : 1
+now gap size : 5 now position : 11 position-gap : 6
+now gap size : 5 now position : 16 position-gap : 11
+now gap size : 5 now position : 7 position-gap : 2
+now gap size : 5 now position : 12 position-gap : 7
+now gap size : 5 now position : 17 position-gap : 12
+now gap size : 5 now position : 8 position-gap : 3
+now gap size : 5 now position : 13 position-gap : 8
+now gap size : 5 now position : 18 position-gap : 13
+now gap size : 5 now position : 9 position-gap : 4
+now gap size : 5 now position : 14 position-gap : 9
+now gap size : 5 now position : 19 position-gap : 14
+=========
+now gap size : 2 now position : 2 position-gap : 0
+now gap size : 2 now position : 4 position-gap : 2
+now gap size : 2 now position : 6 position-gap : 4
+now gap size : 2 now position : 8 position-gap : 6
+now gap size : 2 now position : 10 position-gap : 8
+now gap size : 2 now position : 12 position-gap : 10
+now gap size : 2 now position : 14 position-gap : 12
+now gap size : 2 now position : 16 position-gap : 14
+now gap size : 2 now position : 18 position-gap : 16
+now gap size : 2 now position : 3 position-gap : 1
+now gap size : 2 now position : 5 position-gap : 3
+now gap size : 2 now position : 7 position-gap : 5
+now gap size : 2 now position : 9 position-gap : 7
+now gap size : 2 now position : 11 position-gap : 9
+now gap size : 2 now position : 13 position-gap : 11
+now gap size : 2 now position : 15 position-gap : 13
+now gap size : 2 now position : 17 position-gap : 15
+now gap size : 2 now position : 19 position-gap : 17
+=========
+now gap size : 1 now position : 1 position-gap : 0
+now gap size : 1 now position : 2 position-gap : 1
+now gap size : 1 now position : 3 position-gap : 2
+now gap size : 1 now position : 4 position-gap : 3
+now gap size : 1 now position : 5 position-gap : 4
+now gap size : 1 now position : 6 position-gap : 5
+now gap size : 1 now position : 7 position-gap : 6
+now gap size : 1 now position : 8 position-gap : 7
+now gap size : 1 now position : 9 position-gap : 8
+now gap size : 1 now position : 10 position-gap : 9
+now gap size : 1 now position : 11 position-gap : 10
+now gap size : 1 now position : 12 position-gap : 11
+now gap size : 1 now position : 13 position-gap : 12
+now gap size : 1 now position : 14 position-gap : 13
+now gap size : 1 now position : 15 position-gap : 14
+now gap size : 1 now position : 16 position-gap : 15
+now gap size : 1 now position : 17 position-gap : 16
+now gap size : 1 now position : 18 position-gap : 17
+now gap size : 1 now position : 19 position-gap : 18
+=========
+```
+=======<<print>>=======
+
+
 ```
 
 ## 참고 사이트
