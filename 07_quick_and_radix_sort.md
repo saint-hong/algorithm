@@ -34,6 +34,14 @@
     ```
 ![quick_al_1](./images/quick_al_1.png)
 
+## 보충 설명
+- 배열의 첫번쨰 혹은 마지막 데이터를 기준으로 잡고, 기준데이터를 제외한 배열의 양쪽 끝 데이터를 왼쪽마크, 오른쪽 마크로 설정한다. 왼쪽, 오른쪽 마크 데이터를 기준데이터와 비교한다. 
+- 비교시에 각각의 조건을 따라야한다. 왼쪽마크 데이터는 기준데이터보다 작은 것, 오른쪽마크 데이터는 기준데이터보다 큰 것만 그대로 위치한다. 이 조건을 성리하면 왼쪽, 오른쪽 마크 데이터의 위치에서 한칸씩 이동한다.
+- 비교시에 각각의 조건을 만족하지 않으면, 왼쪽마크 데이터와 오른쪽 마크데이터를 교환한다. 
+- 왼쪽마크데이터와 오른쪽마크데이터의 위치가 바뀌는 지점에서 오른쪽 마크데이터의 위치를 기준점으로 삼고 위의 과정을 반복한다.
+- 오른쪽 마크데이터를 반환받아서 새로운 기준점으로 정하고, 함수의 재귀호출을 통하여 기준점의 양쪽 부분을 다시 위의 과정을 반복한다.
+- 이때에도 한쪽 부분의 첫번쨰 혹은 마지막 데이터를 기준점으로 삼고 왼쪽 마크데이터와 오른쪽 마크데이터를 지정하여 비교, 교환, 이동을 진행한다.
+
 ## 4) 퀵 정렬 알고리즘 코드
 ```
 import random
@@ -109,6 +117,69 @@ data : 100
 ===== swap_counter
 154
 ```
+## 코드 탐색 : while 문이 2개 있는 경우
+- while 문이 연속으로 두개 있을때에는 첫번째 while 문이 실행이 끝나면 두번째 while 문이 실행된다. 동시에 실행하지 않는다.
+- 즉 위의 코드에서 첫번째 while 문의 lmark 가 pivot_val 보다 작거나 같은 경우의 조건을 실행하다가, 조건에 맞지 않으면 두번째 while 문의 rmark 가 pivot_val 보다 크거나 같은 경우의 조건을 실행한다. 
+- 두 while 문을 통과하지 못한 경우는 if 문을 통과하여, swap 함수를 실행시켜 자리를 바꾸게 된다. 왜냐하면 두 while 문의 두 조건은 작은 것은 왼쪽, 큰것은 오른쪽이라는 기준인데, 이것을 충족하지 못했기 때문이다.
+```
+a = 10
+b = 20
+
+while a <= b :
+    while a <= 16 :
+        a += 1
+        print("1번 while 문 {}".format(a))
+        
+    while a <= b :
+        b -= 0.5
+        print("2번 while 문 {}".format(b))
+	
+=====<print>=====
+
+1번 while 문 11
+1번 while 문 12
+1번 while 문 13
+1번 while 문 14
+1번 while 문 15
+1번 while 문 16
+1번 while 문 17
+2번 while 문 19.5
+2번 while 문 19.0
+2번 while 문 18.5
+2번 while 문 18.0
+2번 while 문 17.5
+2번 while 문 17.0
+2번 while 문 16.5
+```
+```
+test_list = [4, 3, 4, 9, 3, 7, 6, 6, 7, 8]
+lmark = 0
+rmark = len(test_list) -1
+pivot_val = test_list[lmark]
+
+while lmark <= rmark :
+    while lmark <= rmark and test_list[lmark] <= pivot_val :
+        lmark += 1
+        print("1번 while 문 {}".format(test_list[lmark]))
+        
+    while lmark <= rmark and test_list[rmark] >= pivot_val :
+        rmark -= 1
+        print("2번 while 문 {}".format(test_list[rmark]))
+    
+    break
+
+=====<print>=====
+
+1번 while 문 3
+1번 while 문 4
+1번 while 문 9
+2번 while 문 7
+2번 while 문 6
+2번 while 문 6
+2번 while 문 7
+2번 while 문 3
+```
+
 
 ## 5) another code
 - pythonds quick sort code
