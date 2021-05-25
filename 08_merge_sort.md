@@ -91,6 +91,142 @@ print(sorted_lst)
 
 [987, 2070, 2542, 2770, 4017, 8720, 20750, 34308, 39805, 43711, 46369, 46687, 50674, 53895, 61190, 61891, 87810, 90934, 95435, 99024]
 ```
+#### 코드 실행 확인
+
+```
+def merge_sort(mylist) :
+    
+    if len(mylist) <= 1 : return mylist
+    
+    half = len(mylist) // 2
+    left_list = merge_sort(mylist[:half])
+    right_list = merge_sort(mylist[half:])
+    merged_list = []
+    
+    while len(left_list) > 0 and len(right_list) > 0 :
+        print("======================================")
+        print("1. 좌우 리스트 확인 : ")
+        print("left_list : ", left_list, end=", ")
+        print("right_list : ", right_list)
+        
+        print("2. 각 리스트의 첫번째 데이터 비교")
+        if left_list[0] > right_list[0] :
+            merged_list.append(right_list[0])
+            
+            print("작은 것 right : ", right_list[0])
+            right_list.pop(0)
+            
+        else :
+            merged_list.append(left_list[0])
+            print("작은 것 left : ", left_list[0])
+            left_list.pop(0)
+            
+    print("3. 작은 것은 mereged_list 에 추가")
+    print("현재 merged_list : ", merged_list)
+    print("4. 비교 후 남아있는 데이터 확인")
+    print("left_list : ", left_list, "right_list : ", right_list)
+    print("5. merged_list와 남은 데이터 합치기")
+    
+    if len(left_list) > 0 : merged_list += left_list
+    if len(right_list) > 0 : merged_list += right_list
+    
+    print("6. 한 회전이 끝난 후 merged_list : ", merged_list)
+    print("\n")
+    
+    return merged_list
+```
+
+- 랜덤 숫자 생성
+```
+random_list = [random.randint(1, 999) for _ in range(5)]
+print(random_list)
+
+=====<print>=====
+
+[604, 706, 864, 268, 605]
+```
+
+- merge_sort 함수로 정렬 실행
+```
+merge_sort(random_list)
+
+=====<print>=====
+
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [604], right_list :  [706]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 left :  604
+3. 작은 것은 mereged_list 에 추가
+현재 merged_list :  [604]
+4. 비교 후 남아있는 데이터 확인
+left_list :  [] right_list :  [706]
+5. merged_list와 남은 데이터 합치기
+6. 한 회전이 끝난 후 merged_list :  [604, 706]
+
+
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [268], right_list :  [605]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 left :  268
+3. 작은 것은 mereged_list 에 추가
+현재 merged_list :  [268]
+4. 비교 후 남아있는 데이터 확인
+left_list :  [] right_list :  [605]
+5. merged_list와 남은 데이터 합치기
+6. 한 회전이 끝난 후 merged_list :  [268, 605]
+
+
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [864], right_list :  [268, 605]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 right :  268
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [864], right_list :  [605]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 right :  605
+3. 작은 것은 mereged_list 에 추가
+현재 merged_list :  [268, 605]
+4. 비교 후 남아있는 데이터 확인
+left_list :  [864] right_list :  []
+5. merged_list와 남은 데이터 합치기
+6. 한 회전이 끝난 후 merged_list :  [268, 605, 864]
+
+
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [604, 706], right_list :  [268, 605, 864]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 right :  268
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [604, 706], right_list :  [605, 864]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 left :  604
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [706], right_list :  [605, 864]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 right :  605
+======================================
+1. 좌우 리스트 확인 : 
+left_list :  [706], right_list :  [864]
+2. 각 리스트의 첫번째 데이터 비교
+작은 것 left :  706
+3. 작은 것은 mereged_list 에 추가
+현재 merged_list :  [268, 604, 605, 706]
+4. 비교 후 남아있는 데이터 확인
+left_list :  [] right_list :  [864]
+5. merged_list와 남은 데이터 합치기
+6. 한 회전이 끝난 후 merged_list :  [268, 604, 605, 706, 864]
+
+
+[268, 604, 605, 706, 864]
+```
+
 ## 4) Merge Sort Algorithm 2
 - https://ratsgo.github.io/data%20structure&algorithm/2017/10/03/mergesort/
 
