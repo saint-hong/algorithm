@@ -14,15 +14,15 @@ n = n - (2*1+1)
 ### 1)-1 바빌로니아법 
 - 임의의 수의 제곱근에 빠르게 수렵하는 수열을 만들어 근사값을 찾는 방법
 - 임의의 자연수 N에 대한 제곱근을 찾는다고 하면 다음과 같은 식이 성립한다. 
-    - $\sqrt{N}=x_{n} + \epsilon, \;\; \epsilon > 0$
-    - $N={\sqrt{N}}^2={(x_{n}+\epsilon)}^2={x_{n}}^2+2x_{n}\epsilon+{\epsilon}^2$
+    - <img src="https://latex.codecogs.com/gif.latex?%5Csqrt%7BN%7D%3Dx_%7Bn%7D%20&plus;%20%5Cepsilon%2C%20%5C%3B%5C%3B%20%5Cepsilon%20%3E%200">
+    - <img src="https://latex.codecogs.com/gif.latex?N%3D%7B%5Csqrt%7BN%7D%7D%5E2%3D%7B%28x_%7Bn%7D&plus;%5Cepsilon%29%7D%5E2%3D%7Bx_%7Bn%7D%7D%5E2&plus;2x_%7Bn%7D%5Cepsilon&plus;%7B%5Cepsilon%7D%5E2">
 - 오차가 작으면 오자의 제곱은 더 작아지므로 그 값을 무시하면,
-    - $N \approx {x_{n}}^2 + 2x_{n}\epsilon, \;\; \epsilon \approx \dfrac{N-{x_{n}}^2}{2x_{n}}$
+    - <img src="https://latex.codecogs.com/gif.latex?N%20%5Capprox%20%7Bx_%7Bn%7D%7D%5E2%20&plus;%202x_%7Bn%7D%5Cepsilon%2C%20%5C%3B%5C%3B%20%5Cepsilon%20%5Capprox%20%5Cdfrac%7BN-%7Bx_%7Bn%7D%7D%5E2%7D%7B2x_%7Bn%7D%7D">
 - 근사오차값을 이용하여 x_n 보다 더 근사된 값을 나타낼 수 있다.
-    - $x_{n+1}=x_{n}+\epsilon=x_{n}+\dfrac{N-{x_{n}}^2}{2x_{n}}=\dfrac{1}{2} \cdot (x_{n} + \dfrac{N}{x_{n}})$
+    - <img src="https://latex.codecogs.com/gif.latex?x_%7Bn&plus;1%7D%3Dx_%7Bn%7D&plus;%5Cepsilon%3Dx_%7Bn%7D&plus;%5Cdfrac%7BN-%7Bx_%7Bn%7D%7D%5E2%7D%7B2x_%7Bn%7D%7D%3D%5Cdfrac%7B1%7D%7B2%7D%20%5Ccdot%20%28x_%7Bn%7D%20&plus;%20%5Cdfrac%7BN%7D%7Bx_%7Bn%7D%7D%29">
 - 이러한 수식을 이용하여 임의의 수 N에 대한 제곱근을 구하는 방식은 다음과 같다.
     - 제곱해서 N 보다 작지만 가장 가까운 수 x0를 구한다.
-    - 그 다음 근사값인 x1 을 구한다. $x_{n+1}=\dfrac{1}{2} \cdot (x_{n} + \dfrac{N}{x_{n}})$
+    - 그 다음 근사값인 x1 을 구한다. <img src="https://latex.codecogs.com/gif.latex?x_%7Bn&plus;1%7D%3D%5Cdfrac%7B1%7D%7B2%7D%20%5Ccdot%20%28x_%7Bn%7D%20&plus;%20%5Cdfrac%7BN%7D%7Bx_%7Bn%7D%7D%29">
     - 원하는 근사값이 나올때까지 반복한다.
 - 뉴턴-랩슨의 절편을 구하는 방식도 결과적으로 바빌로니아법과 비슷하다.
 
@@ -54,7 +54,7 @@ solve(16)
 
 #### 바빌로니아법
 - 임의의 수의 제곱근에 수렴하는 수열을 만들어 근사값을 찾는 방법
-- <$x_{n+1} = \dfrac{1}{2}\cdot(x_{n}+\dfrac{a}{x_{n}})=\dfrac{{x_{n}}^2+a}{2x_{n}}$>
+- <img src="https://latex.codecogs.com/gif.latex?x_%7Bn&plus;1%7D%20%3D%20%5Cdfrac%7B1%7D%7B2%7D%5Ccdot%28x_%7Bn%7D&plus;%5Cdfrac%7Ba%7D%7Bx_%7Bn%7D%7D%29%3D%5Cdfrac%7B%7Bx_%7Bn%7D%7D%5E2&plus;a%7D%7B2x_%7Bn%7D%7D">
 
 ```
 def solve_babil(n) :
