@@ -195,7 +195,7 @@ heap_sort(lst)
 [324, 414, 521, 578, 584, 610, 617, 637, 660, 881]
 ```
 
-## 4)-1 코드탐색
+## 4-1) 코드탐색
 
 - 역순으로 출력
 - 배열의 -1 번째는 마지막 데이터, 순서를 -1 로 하면 역으로 출력 해준다.
@@ -210,6 +210,101 @@ for test in range(10//2-1, -1, -1) :
 2
 1
 0
+```
+## 4-2) 코드 실행 과정 확인
+- 첫번째 반복문에서 heapify 를 실행하면서 우선 가장 큰 수가 루트 노드의 자리에 위치하게 된다.
+- 두번째 반복문에서 가장 큰 수인 루트 노드의 데이터와 마지막 위치인 리프 노드의 데이터가 교환된다.
+- heapify 가 실행 되면 가장 큰 수가 루트 노드에 오게 된다.
+- 그 다음 실행 때는 이 루트 노드와 마지막에서 한칸 앞인 위치의 데이터와 교환된다.
+- 다시 heapify 가 실행 되면 가장 큰 수가 루트 노드에 오게 된다.
+- 이 과정을 반복하면 가장 큰 수가 리스트의 뒤에서부터 채워지게 된다.
+
+```
+def heapify(unsorted, index, heap_size) :
+    largest = index
+    left_index = 2 * index + 1
+    right_index = 2 * index + 2
+    
+    print("index {}, left {}, right {}".format(index, left_index, right_index))
+
+    if left_index < heap_size and unsorted[left_index] > unsorted[index] :
+        largest = left_index
+    if right_index < heap_size and unsorted[right_index] > unsorted[largest] :
+        largest = right_index
+        
+    
+    if largest != index :
+        
+        unsorted[index], unsorted[largest] = unsorted[largest], unsorted[index]
+        
+        heapify(unsorted, largest, heap_size)
+    
+    print(unsorted)
+
+def heap_sort(unsorted) :
+    n = len(unsorted)
+    
+    for i in range(n // 2 - 1, -1, -1) :
+        print("현재 노드 {}".format(i))
+        heapify(unsorted, i, n)
+        
+    print("====")
+    
+    for i in range(n - 1, 0, -1) :
+        print("현재 리스트 {}".format(unsorted))
+        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
+        print("0과 {} 교환 후 {}".format(i, unsorted))
+        heapify(unsorted, 0, i)
+        
+    return unsorted
+```
+
+- 랜덤 숫자 생성
+```
+import random
+
+random_list = [random.randint(1, 100) for _ in range(5)]
+print(random_list)
+
+=====<print>=====
+
+[78, 16, 69, 4, 56]
+```
+```
+heap_sort(random_list)
+
+=====<print>=====
+
+현재 노드 1
+index 1, left 3, right 4
+index 4, left 9, right 10
+[78, 56, 69, 4, 16]
+[78, 56, 69, 4, 16]
+현재 노드 0
+index 0, left 1, right 2
+[78, 56, 69, 4, 16]
+====
+현재 리스트 [78, 56, 69, 4, 16]
+0과 4 교환 후 [16, 56, 69, 4, 78]
+index 0, left 1, right 2
+index 2, left 5, right 6
+[69, 56, 16, 4, 78]
+[69, 56, 16, 4, 78]
+현재 리스트 [69, 56, 16, 4, 78]
+0과 3 교환 후 [4, 56, 16, 69, 78]
+index 0, left 1, right 2
+index 1, left 3, right 4
+[56, 4, 16, 69, 78]
+[56, 4, 16, 69, 78]
+현재 리스트 [56, 4, 16, 69, 78]
+0과 2 교환 후 [16, 4, 56, 69, 78]
+index 0, left 1, right 2
+[16, 4, 56, 69, 78]
+현재 리스트 [16, 4, 56, 69, 78]
+0과 1 교환 후 [4, 16, 56, 69, 78]
+index 0, left 1, right 2
+[4, 16, 56, 69, 78]
+[4, 16, 56, 69, 78]
 ```
 
 ## 5) min heap sort algorithm code
