@@ -637,6 +637,158 @@ f(0,0)
 ```
 - 이 과정이 for i in range(3) 에서의 i = 0 에 해당함. 이후 이 과정이 반복된다.
 
+### 재귀호출을 통해서 행, 열 선택하는 과정 확인 (중복선택가능)
+- 각 행에서 하나씩 선택할 수 있는 모든 경우의 수를 다 거치게 된다.
+- (0,0) -> (1,0) -> (2,0),(2,1),(2,2)
+        -  (1,1) -> (2,0),(2,1),(2,2)
+        -  (1,2) -> (2,0),(2,1),(2,2)
+- (0,1) -> (1,0) -> (2,0),(2,1),(2,2)
+        -  (1,1) -> (2,0),(2,1),(2,2)
+        -  (1,2) -> (2,0),(2,1),(2,2)
+- (0,2) -> (1,0) -> (2,0),(2,1),(2,2)
+        -  (1,1) -> (2,0),(2,1),(2,2)
+        -  (1,2) -> (2,0),(2,1),(2,2)        
+
+- mm[0][0]
+    - 재귀호출 : mm[1][0], mm[2][0]
+        - for 문 : mm[2][1], mm[2][1]
+    - for 문   : mm[1][1]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+    - for 문   : mm[1][2]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+- mm[0][1]
+    - 재귀호출 : mm[1][0], mm[2][0]
+        - for 문 : mm[2][1], mm[2][1]
+    - for 문   : mm[1][1]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+    - for 문   : mm[1][2]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+- mm[0][1]
+    - 재귀호출 : mm[1][0], mm[2][0]
+        - for 문 : mm[2][1], mm[2][1]
+    - for 문   : mm[1][1]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+    - for 문   : mm[1][2]
+        - for 문 : mm[2][0], mm[2][1], mm[2][2]
+```
+mm = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
+
+def test(row, score) :
+    #print("=== row : ", row, "score : ", score)
+    
+    if row == 3 :
+        return score
+    
+    for j in range(3) :
+        print("row : ", row, "col : ", j)
+        test(row+1, mm[row][j])
+    
+    return score
+```
+```
+test(0,0)
+
+=====<print>=====
+
+row :  0 col :  0
+row :  1 col :  0
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  1
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  2
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  0 col :  1
+row :  1 col :  0
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  1
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  2
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  0 col :  2
+row :  1 col :  0
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  1
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+row :  1 col :  2
+row :  2 col :  0
+row :  2 col :  1
+row :  2 col :  2
+```
+### 선택한 열을 중복선택 하지 못하도록 플래그 코드를 추가한 경우의 행,렬 선택 과정
+- 위의 코드에서는 각 행에서 하나씩 모두 선택하는 경우의 수를 탐색
+- 앞의 행에서 선택한 열을 다음 행에서 중복 선택하지 못하도록 하는 코드를 추가
+
+- (0,0) -> (1,1) -> (2,2)
+         - (1,2) -> (2,1)
+- (0,1) -> (1,0) -> (2,2)
+         - (1,2) -> (2,0)
+- (0,2) -> (1,0) -> (2,1)
+         - (1,1) -> (2,0)
+```
+mm = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
+
+col_check = [False] * 3
+
+def test(row, score) :
+    
+    if row == 3 :
+        return score
+    
+    for j in range(3) :
+        if col_check[j] == False :
+            col_check[j] = True
+            print("row : ", row, "col : ", j)
+            test(row+1, mm[row][j])
+            col_check[j] = False
+            
+    return score
+```
+```
+test(0,0)
+
+=====<print>=====
+
+row :  0 col :  0
+row :  1 col :  1
+row :  2 col :  2
+row :  1 col :  2
+row :  2 col :  1
+row :  0 col :  1
+row :  1 col :  0
+row :  2 col :  2
+row :  1 col :  2
+row :  2 col :  0
+row :  0 col :  2
+row :  1 col :  0
+row :  2 col :  1
+row :  1 col :  1
+row :  2 col :  0
+```
+
 # 035. 회문 확인하기
 
 ### 1) 접근풀이 및 조건
