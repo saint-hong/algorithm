@@ -71,6 +71,8 @@
 
 
 #### List
+- list 자료형의 연산은 복잡도가 상대적으로 높은 것들이 여러개 있다.
+- for 문에서 사용하면 시간 복잡도가 데이터 갯수 만큼 늘어난다!
 ```
 Operation     | Example      | Class         | Notes
 --------------+--------------+---------------+-------------------------------
@@ -104,7 +106,9 @@ Multiply      | k*l          | O(k N)        | 5*l is O(N): len(l)*l is O(N**2)
 - 튜플은 동일한 시간 복잡도를 갖는다.
 
 #### Sets
-
+- set 자료형은 상대적으로 시간 복잡도가 낮은 연산들이 많다.
+   - 순서가 없는 특징때문인 것 같다.
+- 특히 set안의 원소가 있는지 없는지 탐색하는 연산이 시간 복잡도가 낮다!
 ```
 Operation     | Example      | Class         | Notes
 --------------+--------------+---------------+-------------------------------
@@ -150,4 +154,19 @@ Construction  | dict(...)    | O(len(...))   | depends # (key,value) 2-tuples
 Iteration     | for k in d:  | O(N)          | all forms: keys, values, items
 	      	      	       		     | Worst: no return/break in loop
 ```
+
+### 알고리즘의 성능을 좋게하려면?
+- 어떤 조건에서 알고리즘을 구현해야하는지 파악 후 알고리즘의 성능에 대한 고려를 한다.
+- 입력 데이터의 크기에 따라서 시간이 크게 늘어나는 코드를 지향한다.
+   - 입력 데이터의 크기가 크다면 이중, 삼중 반복문은 지향한다.
+- 자주 쓰이는 자료형의 연산의 경우 입력 데이터의 크기에 따라서 좀더 효율적인 것을 사용하도록 한다.
+   - 탐색, 검색 등은 set, dict가 list 보다 더 효율적이다.
+   - 데이터와 인덱스를 함께 사용해야하는 경우는 list 사용이 더 효율적이다.
+
+## 참고 사이트
+- https://duri1994.github.io/python/algorithm/python-time-complexity/
+- https://yeonstory.tistory.com/3
+- https://improvemyself.tistory.com/91
+- https://www.fun-coding.org/Chapter08-timecomplexity.html
+- 위키피디아
 
