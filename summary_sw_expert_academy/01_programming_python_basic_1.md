@@ -653,3 +653,354 @@ print("혼합된 소금물의 농도: {:.2f}%".format(result))
 
 혼합된 소금물의 농도: 6.67%
 ```
+## 6. 흐름제어 : if
+- 조건문 : if 문
+    - 어떤 조건을 만족하는 경우 명령문을 수행하기 위해 사용한다.
+    - 조건문의 결과는 T, F를 반환한다.
+    - 조건문이 T 이면 명령문을 실행한다.
+    - 조건문이 F 이면 명령문을 실행하지 않고, 조건문의 제어를 벗어나게 된다.
+
+### 6-1. if문의 문법
+- 명령문은 공백 4개 또는 탭 1번으로 들여쓰기 해야함 : 동일 들여쓰기
+    - 들여쓰기가 잘 못 된 경우 : indenttionerror 발생
+- 명령문들이 "코드블록"이 된다.
+    - if 문이 T인 경우 실행되는 실행문들
+
+```
+if 조건식작성 : 
+    명령문
+    명령문
+    명령문
+    명령문
+```
+
+- if문을 한 줄로 작성 해도 된다.
+    - 가독성 나쁘면 줄 바꿔서 작성해야한다.
+
+### 6-2. if 문 블록의 다양한 명령문
+- 할당문 : 변수선언과 같음
+    - 한줄로 작성할 때는 문장 구분기호 세미콜론 ; 을 써야 함
+- 할당문을 if문 밖에서 만들고 T, F에 따라서 출력을 다르게 할 수 있다.
+    - if문의 블록을 통과하느냐 통과하지 못하냐에 따라서 명령문을 실행이 다르다.
+    
+### 6-3. if, else 문
+- 어떤 조건을 만족하는 경우의 명령문과 만족하지 않았을 경우이 명령문을 상호배타적으로 수행하고자 할 때 사용
+    - if조건식의 결과가 T 이면 명령문 1 실행
+    - if조건식의 결과가 F 이면 명령문 2 실행
+    - if, else 문의 명령문 들여쓰기는 동일해야한다.
+- 특정 조건에 따라 변수의 값만 변경이 필요한 경우
+    - result = "합격" if score >= 60 else "불합격"
+    - 변수 선언을 if, else 문으로 하면, 조건에 따라 다른 값이 저장 된다.
+    
+### 6-4. if, elif, else 문
+- 2개 이상의 다중 조건을 처리하고자 할 때 사용
+    - if 조건식이 False 인 경우 elif 조건식 실행
+    - elif 조건식이 False 인 경우 else 조건식 실행
+    - elif 조건식은 여러개 쓸 수 있다.
+
+### 6-5. input()
+- 문자열 전달
+- 표준출력(콘솔, 터미널)에 문자열 출력
+- 표준입력(키보드)로부터 입력된 값을 반환
+- 문자열을 어떤 자료형으로 변환할 지 설정 할 수 있다.
+    - int(input()) : 문자열이 int 자료형으로 변환된다.
+
+#### 계산기 만들기
+
+```python
+operand1, operator, operand2 = 0, "", 0
+operand1 = int(input("첫 번째 숫자를 입력하세요 : "))
+operator = input("연사자를 입력하세요 (+, -, *, /) : ")
+operand2 = int(input("두 번째 숫자를 입력하세요 : "))
+
+if operator == "+" :
+    print("%d + %d = %d" % (operand1, operand2, operand1 + operand2))
+elif operator == "-" :
+    print("%d - %d = %d" % (operand1, operand2, operand1 - operand2))
+elif operator == "*" :
+    print("%d * %d = %d" % (operand1, operand2, operand1 * operand2))
+elif operator == "/" :
+    print("%d / %d = %.2f" % (operand1, operand2, operand1 / operand2))
+else :
+    print(" '%s'는 지원하지 않는 연산자입니다." % operator)
+
+>>> print
+
+첫 번째 숫자를 입력하세요 : 2
+연사자를 입력하세요 (+, -, *, /) : /
+두 번째 숫자를 입력하세요 : 3
+2 / 3 = 0.67
+```
+
+### 6-6. 흐름제어 if : 연습문제 1
+- 임의의 양의 정수를 입력받아 그 정수의 모든 약수를 구하라
+
+```python
+num = int(input())
+for i in range(1, num+1) :
+    if num % i == 0 :
+        print("%d(은)는 %d의 약수입니다." % (i, num))
+
+>>> print
+
+9
+1(은)는 9의 약수입니다.
+3(은)는 9의 약수입니다.
+9(은)는 9의 약수입니다.
+```
+
+### 6-7. 흐름제어 if : 연습문제 2
+- 임의의 양의 정수를 입력받아 그 정수의 모든 약수를 구하라.
+- 약수가 2개일 경우 소수임을 나타내라.
+
+```python
+num = int(input())
+count = 0
+temp = []
+
+i = 1
+while i <= num :
+    if num % i == 0 :
+        count += 1
+        print("{0}(은)는 {1}의 약수입니다.".format(i, num))
+        temp.append(i)
+    i += 1
+
+if count == 2 :
+    print("{0}(은)는 {1}과 {2}로만 나눌 수 있는 소수입니다."\
+          .format(num, temp[0], temp[1]))
+
+>>> print
+
+9
+1(은)는 9의 약수입니다.
+3(은)는 9의 약수입니다.
+9(은)는 9의 약수입니다.
+```
+
+### 6-8. 흐름제어 if : 연습문제 3
+- 입력된 알파벳 문자에 대해 대소문자를 구분하는 코드를 작성하라.
+
+```python
+s = input()
+
+if s == s.lower() :
+    print("%s 는 소문자 입니다." % s)
+else :
+    pass
+
+>>> print
+
+a
+a 는 소문자 입니다.
+```
+
+### 6-9. 흐름제어 if : 연습문제 4
+- 두 사람이 가위바위보를 해서 승패를 가르는 게임으로 프로그래밍 하시오.
+- ["가위", "바위", "보"] 리스트 사용
+- 입력 : 두 줄에 ["가위", "바위", "보"] 중 하나가 차례로 주어진다
+- 첫번째 사람 : Man1
+- 두번째 사람 : Man2
+- 이긴 사람의 결과 출력
+- Man1 이 이긴 경우 결과
+    - Reseult : Man1 Win! 출력
+- 비긴 경우 
+    - Result : Draw 출력
+
+```python
+Man1 = input()
+Man2 = input()
+act_lst = ["가위", "바위", "보"]
+
+if Man1 == act_lst[0] :
+    if Man2 == act_lst[0] :
+        print("Result : Draw")
+    elif Man2 == act_lst[1] :
+        print("Result : Man2 Win!")
+    elif Man2 == act_lst[2] :
+        print("Result : Man1 Win!")
+elif Man1 == act_lst[1] :
+    if Man2 == act_lst[0] :
+        print("Result : Man1 Win!")
+    elif Man2 == act_lst[1] :
+        print("Result : Draw")
+    elif Man2 == act_lst[2] :
+        print("Result : Man2 Win!")
+else :
+    if Man2 == act_lst[0] :
+        print("Result : Man2 Win!")
+    elif Man2 == act_lst[1] :
+        print("Result : Man1 Win!")
+    elif Man2 == act_lst[2] :
+        print("Result : Draw")
+
+>>> print
+
+가위
+가위
+Result : Draw
+
+>>> print
+
+바위
+보
+Result : Man2 Win!
+```
+
+### 6-10. 흐름제어 if : 연습문제 5
+- 입력된 문자가 대문자일 경우 소문자로, 소문자일 경우 대문자로 변경하라.
+- 알파벳이 아닌 경우 그냥 출력하는 코드를 작성하라.
+- 출력시 아스키코드를 함께 출력한다.
+- **문자열 -> 아스키 코드 : ord("문자열")**
+- **아스키코드 -> 문자열 : chr(아스키코드)**
+
+
+#### 아스키 코드와 문자열 확인
+- 대문자 : 65~90
+
+```python
+for i in range(65, 91) :
+    print(chr(i), end="  ")
+
+>>> print
+
+A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
+```
+
+- 소문자 : 97~122
+
+```python
+for i in range(97, 123) : 
+    print(chr(i), end="  ")
+
+>>> print
+
+a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+```
+
+#### 아스키코드 변환을 사용한 대소문자 전환 코드
+
+```python
+s = input()
+big_alphabet = range(65, 91)
+small_alphabet = range(97, 123)
+
+if ord(s) in big_alphabet :
+    after_s = s.lower()
+    print("%s(ASCII: %d) => %s(ASCII: %d)" % (s, ord(s), after_s, ord(after_s)))
+elif ord(s) in small_alphabet :
+    after_s = s.upper()
+    print("%s(ASCII: %d) => %s(ASCII: %d)" % (s, ord(s), after_s, ord(after_s)))
+else :
+    print(s)
+
+>>> print
+
+c
+c(ASCII: 99) => C(ASCII: 67)
+```
+
+### 6-11. 흐름제어 if : 연습문제 6
+- 1~200 사이의 정수 가운데 7의 배수이면서 5의 배수는 아닌 모든 숫자들을 찾아라.
+- 콤마로 구분된 문자열을 출력하는 프로그램을 작성하라.
+- 마지막에 콤마를 출력하지 않는 다른 조건식은 없을까???
+
+```python
+i = 1
+while i <= 200 :
+    if (i % 7 == 0) and (i % 5 != 0) :
+        if i != 196 :
+            print(i, end=",")
+        elif i == 196 :
+            print(i)
+    else :
+        pass
+    i += 1
+
+>>> print
+
+7,14,21,28,42,49,56,63,77,84,91,98,112,119,126,133,147,154,161,168,182,189,196
+```
+
+#### 마지막에 콤마를 제거하기 위한 다른 코드
+- 해당 숫자들을 리스트에 넣고, 하나씩 출력한다.
+- 마지막 인덱스인 경우 콤마 출력을 하지 않는 조건을 넣는다.
+
+```python
+num_lst = []
+
+i = 1
+while i <= 200 :
+    if (i % 7 == 0) and (i % 5 != 0) :
+        num_lst.append(i)
+    else :
+        pass
+    i += 1
+
+j = 0
+while j < len(num_lst) :
+    if j != len(num_lst) - 1 :
+        print(num_lst[j], end=",")
+    else :
+        print(num_lst[j])
+    j += 1
+
+>>> print
+
+7,14,21,28,42,49,56,63,77,84,91,98,112,119,126,133,147,154,161,168,182,189,196
+```
+
+### 6-12. 흐름제어 if : 연습문제 7
+- 100~300 사이의 숫자에서 각각의 자리 숫자가 짝수인 숫자를 찾아 콤마로 출력하라.
+
+#### 값을 str로 변경 후 자리별로 짝수 확인하는 코드
+- str로 변환
+- 인덱싱으로 자리별 값 선택 -> int로 변환 -> 짝수 확인
+- 각 자리별로 확인
+
+```python
+j = 100
+while j <= 300 :
+    str_j = str(j)
+    if int(str_j[0]) % 2 == 0 :
+        if int(str_j[1]) % 2 == 0 :
+            if int(str_j[2]) % 2 == 0 :
+                if j != 288 :
+                    print(j, end=",")
+                else :
+                    print(j)
+    else :
+        pass
+    j += 1
+
+>>> print
+
+200,202,204,206,208,220,222,224,226,228,240,242,244,246,248,260,262,264,266,268,280,282,284,286,288
+```
+
+#### 자리수를 각각 변수에 저장 후 한번에 짝수 확인
+- 어떤 숫자를 % 10 하면 마지막 자리 숫자가 나머지 값으로 출력된다.
+- 어떤 숫자를 10의 거듭제곱으로 나누면 마지막 자리수가 줄어든다.
+    - 3자리수 -> 2자리수
+    - 4자리수 -> 3자리수
+
+```python
+t = 100
+
+while t <= 300 :
+    first = int(t/1) % 10
+    second = int(t/10) % 10
+    third = int(t/100) % 10
+    if (first % 2 == 0) and (second % 2 == 0) and (third % 2 == 0) :
+        if t != 288 :
+            print(t, end=",")
+        else :
+            print(t)
+    else :
+        pass
+    t += 1
+
+>>> print
+
+200,202,204,206,208,220,222,224,226,228,240,242,244,246,248,260,262,264,266,268,280,282,284,286,288
+```
