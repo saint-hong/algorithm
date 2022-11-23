@@ -142,5 +142,5 @@
    - 이진힙
    - 노드의 합
 
-## 03_hackerrank_30days_test
+## 03_hackerrank_test
 
