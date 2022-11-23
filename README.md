@@ -1,12 +1,13 @@
-# Algorithm
-- "어떤 종류의 문제를 컴퓨터를 사용하여 해결하기 위한 좀 더 효율적인 방법"
+# study-algorithm
+- Description and Summary of the Algorithm and Coding Test
 
-## 소개
+## 목적
 - 여러 참고 사이트의 알고리즘 지식과 사례들을 정리
 - 다양하고 좋은 코드들을 클론 코딩하고 분석하여 원리와 전개방식을 파악
-- 내가 직접 원하는 조건과 상황에 맞는 효율적인 코딩을 하기 위한 목적
+- 코딩 테스트 풀이 정리
 
-## summary_algorithm_book
+## 01_summary_algorithm_book
+- 알고리즘 이란? : **"어떤 종류의 문제를 컴퓨터를 사용하여 해결하기 위한 좀 더 효율적인 방법"**
 - "알고리즘 with 파이썬"이라는 책(박찬주 저)을 공부하며 요약, 정리함
 
 #### 1. 연결 리스트
@@ -39,7 +40,7 @@
 #### 13. 알고리즘 연습문제
 #### 14. 알고리즘 연습문제
 
-## summary_sw_expert_academy
+## 02_summary_sw_expert_academy
 - 삼성 소프트웨어 아카데미 홈페이지의 프로그래밍과 알고리즘을 위한 교육과정을 학습하고 정리함
 
 #### 1. computationla thinking
@@ -141,5 +142,5 @@
    - 이진힙
    - 노드의 합
 
-#### 4. programming - advanced
+## 03_hackerrank_30days_test
 
